@@ -12,16 +12,6 @@ from sensor_msgs.msg import Imu
 import serial
 import struct
 
-comport_num = "/dev/ttyUSB0"
-comport_baudrate = 115200
-# comport_num = '/dev/tty' + input("EBIMU Port: /dev/tty")
-# comport_baudrate = input("Baudrate: ")
-
-try:
-	ser = serial.Serial(port=comport_num, baudrate=comport_baudrate)
-except:
-	print('Serial port error!')
-
 
 class EbimuPublisher(Node):
 
@@ -56,9 +46,9 @@ class EbimuPublisher(Node):
 	def timer_callback(self):
 		
 		msg = Imu()
-		if ser.read(2) == b'\x55\x55':  # SOP 확인
+		if self.serial_port.read(2) == b'\x55\x55':  # SOP 확인
 
-			data = ser.read(22)
+			data = self.serial_port.read(22)
 
 			if len(data) == 22:
 				self.parse_ahrs_data(data)
