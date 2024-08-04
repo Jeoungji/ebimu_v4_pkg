@@ -7,7 +7,6 @@ import rclpy
 from rclpy.node import Node
 from rclpy.qos import QoSProfile
 import rclpy.time
-from std_msgs.msg import String
 from sensor_msgs.msg import Imu
 import serial
 import struct
@@ -17,7 +16,6 @@ class EbimuPublisher(Node):
 
 	def __init__(self):
 		super().__init__('ebimu_publisher')
-
 		self.declare_parameter('device_name', '/dev/ttyUSB0')
 		self.declare_parameter('baud_rate', 115200)
 		self.declare_parameter('frame', 'map')
@@ -33,7 +31,7 @@ class EbimuPublisher(Node):
 			self.serial_port = serial.Serial(device_name, baud_rate)
 			self.get_logger().info('Serial port opened successfully.')
 		except serial.SerialException as e:
-			self.get_logger().error(f'Failed to open serial port: {e}')
+			self.get_logger().error(f'Failed to open serial port: {e}\n\n')
 			rclpy.shutdown()
 	
 		qos_profile = QoSProfile(depth=10)

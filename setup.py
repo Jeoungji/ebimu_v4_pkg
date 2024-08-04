@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'ebimu_publisher = ebimu_pkg.ebimu_publisher:main',
+            'ebimu_publisher = ebimu_v4_pkg.ebimu_publisher:main',
         ],
     },
 )
