@@ -1,2 +1,7 @@
-# ebimu_v4_publisher
-# ebimu_v4_publisher
+ebimu publisher
+quataunion
+gyro
+accel - without gravity
+on hex data
+
+publish sensor_msgs/msg/Imu
